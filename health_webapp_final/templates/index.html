@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Health Recommender</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f4f8fb; text-align: center; }
+        .container { max-width: 900px; margin: auto; padding: 20px; }
+        .input-box { margin: 20px; }
+        input[type=text] { width: 60%; padding: 10px; font-size: 16px; }
+        button { padding: 10px 20px; font-size: 16px; margin-left: 10px; cursor: pointer; }
+        .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-top: 20px; }
+        .box { background: white; padding: 15px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); text-align: left; }
+        .box h3 { margin-top: 0; }
+        img { width: 150px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Health Recommender System</h1>
+        <form method="POST">
+            <div class="input-box">
+                <input type="text" name="symptoms" placeholder="Enter symptoms (comma separated)" required>
+                <button type="submit">Predict</button>
+            </div>
+        </form>
+
+        {% if details %}
+        <div class="grid">
+            <div class="box" style="background-color:lightblue;"><h3>Disease</h3><p>{{ details['Disease'] }}</p></div>
+            <div class="box" style="background-color:palegreen;"><h3>Description</h3><p>{{ details['Description'] }}</p></div>
+	    <div class="box" style="background-color:lightyellow;"><h3>Precautions</h3><p>{{ details['Precautions'] }}</p></div>
+	    <div class="box" style="background-color:lightpink;"><h3>Medications</h3><p>{{ details['Medications'] }}</p></div>
+            <div class="box" style="background-color:lavender;"><h3>Workouts</h3><p>{{ details['Workouts'] }}</p></div>
+            <div class="box" style="background-color:peachpuff;"><h3>Diets</h3><p>{{ details['Diets'] }}</p></div>
+
+        </div>
+        {% endif %}
+
+       <img src="{{ url_for('static', filename='doctor.jpeg') }}" alt="Doctor" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;object-fit:cover;">
+
+
+    </div>
+</body>
+</html>
